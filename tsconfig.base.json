@@ -12,8 +12,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "pretty": true,
-    "sourceMap": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
     "strict": true,
+    "skipLibCheck": true,
     "target":"ES2017",
     "lib": ["ES2017"]
   }
