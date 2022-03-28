@@ -5,6 +5,10 @@ import { SimpleNotifyWebStack } from '../lib/simple-notify-web-stack';
 
 const app = new cdk.App();
 new SimpleNotifyWebStack(app, 'SimpleNotifyWebStack', {
+  env: {
+    account: process.env.CDK_DEPLOY_ACCOUNT || process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEPLOY_REGION || process.env.CDK_DEFAULT_REGION,
+  },
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
