@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/cdkApp.ts",
+  "app": "npx ts-node --prefer-ts-exts infra/cdkApp.ts",
   "toolkitStackName": "MyCDKToolkit",
   "context": {
       "@aws-cdk/core:bootstrapQualifier": "lp-test",
