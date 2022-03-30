@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { CdkStack } from '../lib/CdkStack';
+import { CdkStack } from './CdkStack';
 
 const cdkApp = new cdk.App();
 new CdkStack(cdkApp, 'SimpleNotifyWebStack', {
