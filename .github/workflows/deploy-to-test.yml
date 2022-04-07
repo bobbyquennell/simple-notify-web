@@ -2,7 +2,7 @@ name: Deploy To Test
 on:
   push:
     branches:
-      - github-action
+      - main
 
 # Initializes environment variables for the workflow
 env:

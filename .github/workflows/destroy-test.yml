@@ -1,11 +1,13 @@
 name: Destroy
 on:
   workflow_dispatch:
+    branches:
+      - main
 env:
   DEPLOY_REGION: ap-southeast-2
   CDK_DEPLOY_ACCOUNT: ${{ secrets.CDK_DEPLOY_ACCOUNT }}
 jobs:
-  AWS-CDK-Deploy:
+  AWS-CDK-Destroy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
