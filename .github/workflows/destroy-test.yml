@@ -1,0 +1,37 @@
+name: Destroy
+on:
+  workflow_dispatch:
+env:
+  DEPLOY_REGION: ap-southeast-2
+  CDK_DEPLOY_ACCOUNT: ${{ secrets.CDK_DEPLOY_ACCOUNT }}
+jobs:
+  AWS-CDK-Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: AWS Assume Role
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-access-key-id: ${{ secrets.CICD_ACCOUNT_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.CICD_ACCOUNT_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.DEPLOY_REGION }}
+          role-to-assume: ${{ secrets.CICD_CROSS_ACCOUNT_ROLE_FOR_TEST }}
+          role-duration-seconds: 1200
+          role-session-name: GitActionDeploymentSession
+      - name: Npm install
+        run: |
+          npm install
+          npm install -g add aws-cdk@2.17.0
+      - name: Destroy
+        run: |
+          echo "start cdk destroy"
+          cdk --version
+          cd $GITHUB_WORKSPACE
+          ls -a
+          chmod 700 cdk-destroy.sh
+          ./cdk-destroy.sh ${{ env.CDK_DEPLOY_ACCOUNT }} ${{ env.DEPLOY_REGION }} "$@"
+      - run: echo "🍏 This job's status is ${{ job.status }}."

@@ -17,7 +17,7 @@ export class CdkStack extends cdk.Stack {
         functionName: 'notificationHandler',
         description: 'Get notifications from DynamoDB',
         runtime: lambda.Runtime.NODEJS_14_X,
-        architecture: lambda.Architecture.ARM_64,
+        architecture: lambda.Architecture.X86_64,
         entry: path.join(__dirname, '../src/lambda/notification-handler.ts'),
         handler: 'notificationHandler',
       },
